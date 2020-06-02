@@ -1,26 +1,26 @@
 #include<stdio.h>
 #include<stdlib.h>
-//#include<string.h>
-
 
 int main(){
     char fileName[100];
-    char file2[100]="copyFile";
     char copy,c;
 
     printf("Please enter file name: ");
     scanf("%s", fileName);
 
-    FILE *fp= fopen(fileName, "r" ); //creates file one
+    //creates file one
+    FILE *fp= fopen(fileName, "r" ); 
     
     if (fp == NULL){
         printf("error.\n");
         exit (0);
     }
 
-    fprintf(fp, "This is what is inside file one.\n"); //input something random into file one 
+    //input something random into file one 
+    fprintf(fp, "This is what is inside file one.\n"); 
     
-    FILE *fp2= fopen(file2, "w" ); //creates a file
+    //creates a file
+    FILE *fp2= fopen("file2", "w" ); 
     
     if (fp2 == NULL){
         printf("error.\n");
@@ -33,7 +33,10 @@ int main(){
         fputc(copy,fp2);
         copy = fgetc(fp);
     }
-    fprintf(fp2, "File one copied into file two.\n");//write into file two
+
+    //write into file two
+    fprintf(fp2, "File one copied into file two.\n");
+
     fclose(fp);
     fclose(fp2);
 
