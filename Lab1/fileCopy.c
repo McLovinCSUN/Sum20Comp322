@@ -19,7 +19,7 @@ int main(){
     scanf("%s", file1);
     printf("\n");
 
-    fp= open(file1, O_RDWR | O_EXCL|   O_CREAT);  
+    fp= open(file1, O_RDWR | O_EXCL| O_CREAT);  
     
     if (fp == -1){
         printf("error.\n");
@@ -33,7 +33,7 @@ int main(){
     
     fp2= open(file2, O_WRONLY | O_EXCL| O_CREAT);
     
-     if (fp2 == -1){
+    if (fp2 == -1){
         printf("error.\n"); 
     }
  
@@ -45,5 +45,5 @@ int main(){
     
     close(fp);
     close(fp2);
-     return 0;
+    return 0;
 }
