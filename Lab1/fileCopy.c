@@ -22,19 +22,25 @@ int main(){
     fp= open(file1, O_RDWR | O_EXCL| O_CREAT);  
     
     if (fp == -1){
-        printf("error.\n");
+        printf("Either an input file exist with same name, in this case change file name.\n");
+        printf("Or an error occured creating a new input file.\n");
+        printf("Please try again.\n");
+        exit(0);
     }
     write(fp,input1,inputLen);
 
     //creates a file2
-    printf("Please enter output file name: ");
+    printf("Please enter destination file name: ");
     scanf("%s", file2);
     printf("\n");
     
     fp2= open(file2, O_WRONLY | O_EXCL| O_CREAT);
     
     if (fp2 == -1){
-        printf("error.\n"); 
+        printf("Either an destination file exist with same name, in this case change file name.\n");
+        printf("Or an error occured creating a new destination file.\n");
+        printf("Please try again.\n");
+        exit(0);
     }
  
     //copies file1 contents into file2
@@ -42,6 +48,9 @@ int main(){
         read(fp,input1,inputLen);
         write(fp2,input1,inputLen);
     }
+
+    printf("Contents in the input file was copied into the destination file! :)\n");
+    printf("Goodbye.\n");
     
     close(fp);
     close(fp2);
