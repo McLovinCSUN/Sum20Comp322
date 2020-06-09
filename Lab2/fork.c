@@ -12,20 +12,25 @@ int main(int argc, char *argv[]){
 
     //this loop will execute however number of times inputed by user
     for(i = 0; i < j; i++){
-        //creates a new child and copies all the information below
+        //fork is creating a new process by copying the calling process (parent)
+        //at the time of fork() both memory spaces have the same content.
         child = fork();
+        //after the fork, operations performed by the processes do not effect one another
+
+        //if the the child process is less than zero the parent was not able to create a child process
+        //then it exits 
         if (child < 0){
             printf("Error.");
             exit (0);
         }
-        //the first time child is forked it will have a pid # != 0 but once it finishes
-        //it then = to 0 going into this if statement
+
+        //if the parent successed in creating a child process, the child PID is returned to the parent
+        //and the child get back a zero. that is how you know it is a child process. 
         if(child == 0){
             counter= i+1;
             printf("Hello World from child %d\n", counter);   
         }else{
-            //the parent process is going to wait till we reach j number of times before 
-            //terminating itself
+            //the parent is going to wait till child process j terminates 
             wait(&j);
         }
     }
