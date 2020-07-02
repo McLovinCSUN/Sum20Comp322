@@ -1,0 +1,13 @@
+#!/bin/bash
+SEATS=$1
+seats_remaining=$SEATS
+
+for ((i = $SEATS; i >=1; i--));
+do
+    echo "$i will take a seat"
+    seats_remaining="$(($seats_remaining-1))"
+    ./Lab4 $seats_remaining $i &
+done
+trap "exit" INT TERM ERR
+trap "kill 0" EXIT
+wait
